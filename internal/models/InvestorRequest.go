@@ -1,4 +1,4 @@
-package models
+package github.com/Udyana-Inc/InvestorAPI/internal/models
 
 type InvestorRequest struct {
 	interestRate     float64
