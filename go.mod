@@ -1,4 +1,4 @@
-module grpcclient
+module github.com/Udyana-Inc/InvestorAPI
 
 go 1.21.2
 
