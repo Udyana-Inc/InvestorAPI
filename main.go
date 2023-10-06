@@ -1,9 +1,9 @@
 package main
-import("fmt", 
-"github.com/hari-iyer-github/InvestorAPI")
 
+import (
+	"fmt"
+)
 
-
-func main(){
+func main() {
 	fmt.Println("main app")
 }
