@@ -1,7 +1,7 @@
-package Investor
+package investor
 
 import (
-	"github.com/Udyana-Inc/InvestorAPI/internal/models"
+	"github.com/Udyana-Inc/InvestorAPI/internals/models"
 	"github.com/jinzhu/copier"
 )
 
