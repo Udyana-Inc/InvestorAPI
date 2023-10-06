@@ -1,9 +1,9 @@
-package github.com/Udyana-Inc/InvestorAPI/internal/models
+package models
 
 type InvestorRequest struct {
-	interestRate     float64
-	beginningBalance float64
-	yearsHeld        int16
-	taxRate          float64
-	afterTaxes       bool
+	InterestRate     float64
+	BeginningBalance float64
+	YearsHeld        int
+	TaxRate          float64
+	AfterTaxes       bool
 }
