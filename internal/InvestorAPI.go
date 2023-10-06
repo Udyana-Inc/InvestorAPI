@@ -10,9 +10,11 @@ import (
 func CompoundInterest(req models.InvestorRequest) (res []*models.InvestorResponse, err error) {
 	endingBalance := req.BeginningBalance
 	interestRate := (1 + (req.InterestRate / 100))
-
+	taxRate := 1 - (req.TaxRate / 100)
+	res = make([]*models.InvestorResponse, req.YearsHeld+1)
 	// calculate the compound ending balance after taxes or regardless of taxes
 	for years := 1; years <= req.YearsHeld; years++ {
+		res[years] = &models.InvestorResponse{}
 		// copy over similar values from request to response
 		err = copier.Copy(res[years], &req)
 		if err != nil {
@@ -25,10 +27,10 @@ func CompoundInterest(req models.InvestorRequest) (res []*models.InvestorRespons
 			res[years].CurrentYear = time.Now().AddDate(years, 0, 0)
 
 		} else if req.AfterTaxes == true {
-			taxRate := 1 - (req.TaxRate / 100)
 			//taxable account
 			endingBalance = interestRate * (endingBalance) * taxRate
 			res[years].EndingBalance = endingBalance
+			res[years].CurrentYear = time.Now().AddDate(years, 0, 0)
 
 		}
 
