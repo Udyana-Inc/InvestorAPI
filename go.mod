@@ -1,4 +1,4 @@
-module github.com/Udyana-Inc/InvestorAPI/internal
+module github.com/Udyana-Inc/InvestorAPI
 
 go 1.21.2
 
