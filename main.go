@@ -8,7 +8,25 @@ import (
 )
 
 func main() {
-	request := models.InvestorRequest{InterestRate: 8, BeginningBalance: 180000.00, YearsHeld: 10, TaxRate: 10, AfterTaxes: false}
+	request := models.InvestorRequest{InterestRate: 8, BeginningBalance: 180000.00, YearsHeld: 10, TaxRate: 10, AfterTaxes: false, DesiredAmount: 0}
+	requestMillion := models.InvestorRequest{InterestRate: 8, BeginningBalance: 180000.00, YearsHeld: 10, TaxRate: 10, AfterTaxes: false, DesiredAmount: 5000000.00}
 	fmt.Println("main app")
-	fmt.Println(investor.CompoundInterest(request))
+	//response, err := investor.CompoundInterest(request)
+	response, err := investor.GreaterThanDesiredBalance(requestMillion)
+	if err != nil {
+		fmt.Println(err)
+	}
+	for _, res := range response {
+		if res != nil {
+			resactual := *res
+			// ... rest of your code
+
+			json, err := resactual.String()
+			if err != nil {
+				fmt.Println(err)
+			}
+
+			fmt.Println(json)
+		}
+	}
 }

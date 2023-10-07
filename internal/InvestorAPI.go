@@ -1,6 +1,7 @@
 package investor
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/Udyana-Inc/InvestorAPI/internal/models"
@@ -38,4 +39,18 @@ func CompoundInterest(req models.InvestorRequest) (res []*models.InvestorRespons
 
 	return
 
+}
+
+func greaterThanDesiredBalance(req models.InvestorRequest) (res []*models.InvestorResponse, err error) {
+	desiredAmount := req.DesiredAmount
+	req.YearsHeld = 1
+	res, err = CompoundInterest(req)
+	if err != nil {
+		fmt.Println(err)
+	}
+	for res[len(res)].EndingBalance < desiredAmount {
+		req.YearsHeld = +1
+		res, err = CompoundInterest(req)
+	}
+	return
 }

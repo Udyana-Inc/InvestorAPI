@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"time"
 )
 
@@ -12,4 +13,10 @@ type InvestorResponse struct {
 	TaxRate          float64
 	AfterTaxes       bool
 	CurrentYear      time.Time
+}
+
+func (res InvestorResponse) String() (string, error) {
+	jsonData, err := json.Marshal(res)
+	return string(jsonData), err
+
 }
